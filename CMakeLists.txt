@@ -7,17 +7,26 @@ set(CMAKE_BUILD_TYPE release)
 
 set(CMAKE_CXX_STANDARD 11)
 
-option(MERCURY_OPENMP "use openmp for muti-thread" OFF)
-option(MERCURY_X86 "build for x86 cpu" ON)
-option(MERCURY_CUDA "build for nvidia gpu" OFF)
-option(MERCURY_ARM "build for arm devices" OFF)
+option(USE_OPENMP "use openmp for muti-thread" ON)
+option(USE_X86 "build for x86 cpu" ON)
+option(USE_CUDA "build for nvidia gpu" ON)
+option(USE_ARM "build for arm devices" OFF)
 
-if(MERCURY_OPENMP)
+if(USE_OPENMP)
     find_package(OpenMP)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-    ADD_DEFINITIONS(-DUSE_OPENMP)
+    message(STATUS "Found openmp in ${OPENMP_INCLUDE_DIR}")
+    message(STATUS " |--openmp cflags: ${OpenMP_C_FLAGS}")
+    message(STATUS " |--openmp cxxflags: ${OpenMP_CXX_FLAGS}")
+    message(STATUS " |--openmp cflags: ${OpenMP_EXE_LINKER_FLAGS}")
+    #ADD_DEFINITIONS(-DUSE_OPENMP)
 endif()
+
+if(USE_CUDA)
+    FIND_PACKAGE(CUDA REQUIRED)
+endif()
+
 SET( CMAKE_VERBOSE_MAKEFILE OFF)
 
 add_compile_options(-std=c++11)
@@ -36,6 +45,7 @@ include_directories(operator)
 include_directories(utils)
 include_directories(./)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(/usr/local/cuda-8.0/include)
 
 aux_source_directory(. DIRSRCS)
 add_subdirectory(base)
@@ -44,5 +54,8 @@ add_subdirectory(base)
 #add_subdirectory(utils)
 
 #set(SOURCE_FILES main.cpp)
-add_executable(${PROJECT_NAME} ${DIRSRCS})
-target_link_libraries(${PROJECT_NAME} base)
+
+#add_executable(${PROJECT_NAME} ${DIRSRCS})
+cuda_add_executable(${PROJECT_NAME} ${DIRSRCS})
+
+target_link_libraries(${PROJECT_NAME} base -lm -ldl -lcuda)

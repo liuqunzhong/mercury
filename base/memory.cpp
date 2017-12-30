@@ -94,7 +94,7 @@ GpuMemory::GpuMemory() : Memory() {}
 GpuMemory::GpuMemory(size_t size) : Memory(size) {
     _own_data = true;
 #ifdef USE_CUDA
-    LOG(INFO)<<"allocate gpu memory! "<<_capacity;
+    //LOG(INFO)<<"allocate gpu memory! "<<_capacity;
     cudaMalloc(&_data, _capacity);
 #endif
 }

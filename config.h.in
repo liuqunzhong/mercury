@@ -1,9 +1,9 @@
 #ifndef MERCURY_CONFIG_H
 #define MERCURY_CONFIG_H
 
-#cmakedefine01 MERCURY_OPENMP
-#cmakedefine01 MERCURY_X86
-#cmakedefine01 MERCURY_CUDA
-#cmakedefine01 MERURY_ARM
+#cmakedefine USE_OPENMP
+#cmakedefine USE_X86
+#cmakedefine USE_CUDA
+#cmakedefine USE_ARM
 
 #endif // MERCURY_CONFIG_H
