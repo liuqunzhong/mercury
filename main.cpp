@@ -19,11 +19,12 @@ void test_tensor(){
     print_tensor(tin);
 }
 
-void main(void) {
+int main(int argc, char** argv) {
 #pragma omp parallel
     {
         printf("test multi-thread\n");
     }
 
     test_tensor();
+	return 0;
 }
