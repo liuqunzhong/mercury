@@ -53,25 +53,25 @@ void Tensor<dtype>::to_gpu() {
 }
 
 template<typename dtype>
-const void* Tensor<dtype>::get_cpu_data(int index) {
-    return _cpu_mem->get_data() + (index) * _bytes;
+const dtype* Tensor<dtype>::get_cpu_data(int index) {
+    return (const dtype*)_cpu_mem->get_data() + index;
 }
 
 template<typename dtype>
-void* Tensor<dtype>::get_cpu_data_mutable(int index) {
+dtype* Tensor<dtype>::get_cpu_data_mutable(int index) {
     _mem_head = HEAD_AT_CPU;
-    return _cpu_mem->get_data_mutable() + (index) * _bytes;
+    return (dtype*)_cpu_mem->get_data_mutable() + index;
 }
 
 template<typename dtype>
-const void* Tensor<dtype>::get_gpu_data(int index) {
-    return _gpu_mem->get_data() + (index) * _bytes;
+const dtype* Tensor<dtype>::get_gpu_data(int index) {
+    return (const dtype*)_gpu_mem->get_data() + index;
 }
 
 template<typename dtype>
-void* Tensor<dtype>::get_gpu_data_mutable(int index) {
+dtype* Tensor<dtype>::get_gpu_data_mutable(int index) {
     _mem_head = HEAD_AT_GPU;
-    return _gpu_mem->get_data_mutable() + (index) * _bytes;
+    return (dtype*)_gpu_mem->get_data_mutable() + index;
 }
 
 #else
@@ -85,23 +85,23 @@ void Tensor<dtype>::to_gpu(){
 }
 
 template<typename dtype>
-const void* Tensor<dtype>::get_cpu_data(int index) {
-    return _cpu_mem->get_data() + index * _bytes;
+const dtype* Tensor<dtype>::get_cpu_data(int index) {
+    return (const dtype*)_cpu_mem->get_data() + index;
 }
 
 template<typename dtype>
-void* Tensor<dtype>::get_cpu_data_mutable(int index) {
-    return _cpu_mem->get_data_mutable() + index * _bytes;
+dtype* Tensor<dtype>::get_cpu_data_mutable(int index) {
+    return (dtype*)_cpu_mem->get_data_mutable() + index;
 }
 
 template<typename dtype>
-const void* Tensor<dtype>::get_gpu_data(int index) {
-    return _cpu_mem->get_data() + index * _bytes;
+const dtype* Tensor<dtype>::get_gpu_data(int index) {
+    return (const dtype*)_cpu_mem->get_data() + index;
 }
 
 template<typename dtype>
-void* Tensor<dtype>::get_gpu_data_mutable(int index) {
-    return _cpu_mem->get_data_mutable() + index * _bytes;
+dtype* Tensor<dtype>::get_gpu_data_mutable(int index) {
+    return (dtype*)_cpu_mem->get_data_mutable() + index;
 }
 
 #endif
@@ -115,9 +115,9 @@ template int Tensor<float>::height();
 template int Tensor<float>::width();
 
 
-template const void* Tensor<float>::get_cpu_data(int index = 0);
-template void* Tensor<float>::get_cpu_data_mutable(int index = 0);
-template const void* Tensor<float>::get_gpu_data(int index = 0);
-template void* Tensor<float>::get_gpu_data_mutable(int index = 0);
+template const float* Tensor<float>::get_cpu_data(int index = 0);
+template float* Tensor<float>::get_cpu_data_mutable(int index = 0);
+template const float* Tensor<float>::get_gpu_data(int index = 0);
+template float* Tensor<float>::get_gpu_data_mutable(int index = 0);
 
 } //namespace mercury

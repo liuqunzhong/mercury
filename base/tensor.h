@@ -228,23 +228,23 @@ public:
      * \brief get const data from index pos of tensor, gpu memory
      * \if target only has cpu memory, return cpu data
      */
-    const inline void* get_gpu_data(int index = 0);
+    const inline dtype* get_gpu_data(int index = 0);
 
     /*
      * \brief get const data from index pos of tensor, cpu memory
      */
-    const inline void* get_cpu_data(int index = 0);
+    const inline dtype* get_cpu_data(int index = 0);
 
     /*
      * \brief get data from index pos of tensor, gpu memory
      * \if target only has cpu memory, return cpu data
      */
-    inline void* get_gpu_data_mutable(int index = 0);
+    inline dtype* get_gpu_data_mutable(int index = 0);
 
     /*
      * \brief get data from index pos of tensor, cpu memory
      */
-    inline void* get_cpu_data_mutable(int index = 0);
+    inline dtype* get_cpu_data_mutable(int index = 0);
 
     /*
      * \brief size of real buffer the memory held, in bytes.
