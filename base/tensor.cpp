@@ -115,9 +115,9 @@ template int Tensor<float>::height();
 template int Tensor<float>::width();
 
 
-template const float* Tensor<float>::get_cpu_data(int index = 0);
-template float* Tensor<float>::get_cpu_data_mutable(int index = 0);
-template const float* Tensor<float>::get_gpu_data(int index = 0);
-template float* Tensor<float>::get_gpu_data_mutable(int index = 0);
+template const float* Tensor<float>::get_cpu_data(int index);
+template float* Tensor<float>::get_cpu_data_mutable(int index);
+template const float* Tensor<float>::get_gpu_data(int index);
+template float* Tensor<float>::get_gpu_data_mutable(int index);
 
 } //namespace mercury

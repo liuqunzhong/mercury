@@ -33,7 +33,7 @@ add_compile_options(-std=c++11)
 add_definitions(-fPIC)
 add_definitions(-Ofast)
 add_definitions(-ffast-math)
-add_definitions(-Wall -Wextra -Wno-unused-function)
+add_definitions(-Wall)# -Wextra  -Wno-unused-function
 
 message(STATUS "CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
 

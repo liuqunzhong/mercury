@@ -8,7 +8,12 @@
 #include <memory>
 #include "type.h"
 #include "memory.h"
+#if defined _WIN32 || defined _WIN64
+#include <assert.h>
+#include <windows.h>
+#else
 #include "utils/logger/logger.h"
+#endif
 
 namespace mercury {
 
@@ -38,14 +43,21 @@ public:
      * \brief constructor, memory allocated
      */
     explicit Tensor(std::vector<int>& shape) : _shape(shape) {
-
+#if defined _WIN32 || defined _WIN64
+		assert(shape.size() > 0);
+#else
         CHECK_GT(shape.size(), 0) << "error: input shape is empty!";
+#endif
         _bytes = sizeof(dtype);
         _size = 1;
         for (int i = 0; i < shape.size(); ++i) {
             _size *= shape[i];
         }
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
         CHECK_GT(_size, 0) << "error: input shape is wrong!";
+#endif
         _cpu_mem = std::make_shared<CpuMemory>(_size * _bytes);
         _mem_head = SYNCED;
 #ifdef USE_CUDA
@@ -59,12 +71,20 @@ public:
     explicit Tensor(void* cpu_data, void* gpu_data, \
         std::vector<int>& shape, size_t capacity) :  _shape(shape){
 
+#if defined _WIN32 || defined _WIN64
+		assert(shape.size() > 0);
+#else
         CHECK_GT(shape.size(), 0) << "error: input shape is empty!";
+#endif
         _size = 1;
         for (int i = 0; i < shape.size(); ++i) {
             _size *= shape[i];
         }
-        CHECK_GT(_size, 0) << "error: input shape is wrong!";
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
+		CHECK_GT(_size, 0) << "error: input shape is wrong!";
+#endif 
         _bytes = sizeof(dtype);
         if (cpu_data != nullptr){
             _cpu_mem = std::make_shared<CpuMemory>(cpu_data, capacity);
@@ -96,7 +116,11 @@ public:
      */
     Tensor(Tensor& tensor) {
 
-        CHECK_GT(tensor._size, 0) << "input tensor is not initialized";
+#if defined _WIN32 || defined _WIN64
+		assert(tensor._size > 0);
+#else
+		CHECK_GT(tensor._size, 0) << "input tensor is not initialized";
+#endif 
 
         _shape = tensor._shape;
         _size = tensor._size;
@@ -111,8 +135,11 @@ public:
      * \brief copy constructor const, event tree and tensor tree are not copied
      */
     Tensor(const Tensor& tensor) {
-
-        CHECK_GT(tensor._size, 0) << "input tensor is not initialized";
+#if defined _WIN32 || defined _WIN64
+		assert(tensor._size > 0);
+#else
+		CHECK_GT(tensor._size, 0) << "input tensor is not initialized";
+#endif 
         _shape = tensor._shape;
         _size = tensor._size;
         _bytes = tensor._bytes;
@@ -124,7 +151,11 @@ public:
 
     Tensor& operator=(Tensor& tensor){
 
-        CHECK_GT(tensor._size, 0) << "input tensor is not initialized";
+#if defined _WIN32 || defined _WIN64
+		assert(tensor._size > 0);
+#else
+		CHECK_GT(tensor._size, 0) << "input tensor is not initialized";
+#endif 
         this->_shape = tensor._shape;
         this->_size = tensor._size;
         this->_bytes = tensor._bytes;
@@ -139,13 +170,24 @@ public:
      */
     void init(std::vector<int>& shape){
 
-        CHECK_GT(shape.size(), 0) << "error: input shape is empty!";
+#if defined _WIN32 || defined _WIN64
+		assert(shape.size() > 0);
+#else
+		CHECK_GT(shape.size(), 0) << "error: input shape is empty!";
+#endif 
+       
         _bytes = sizeof(dtype);
         _size = 1;
         for (int i = 0; i < shape.size(); ++i) {
             _size *= shape[i];
         }
-        CHECK_GT(_size, 0) << "error: input shape is wrong!";
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
+		CHECK_GT(_size, 0) << "error: input shape is wrong!";
+#endif 
+
+        
         _cpu_mem = std::make_shared<CpuMemory>(_size * _bytes);
         _mem_head = SYNCED;
 #ifdef USE_CUDA
@@ -158,12 +200,20 @@ public:
      */
     void init_with_data(std::vector<int>& shape, void* cpu_data, void* gpu_data, size_t capacity){
 
-        CHECK_GT(shape.size(), 0) << "error: input shape is empty!";
+#if defined _WIN32 || defined _WIN64
+		assert(shape.size() > 0);
+#else
+		CHECK_GT(shape.size(), 0) << "error: input shape is empty!";
+#endif 
         _size = 1;
         for (int i = 0; i < shape.size(); ++i) {
             _size *= shape[i];
         }
-        CHECK_GT(_size, 0) << "error: input shape is wrong!";
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
+		CHECK_GT(_size, 0) << "error: input shape is wrong!";
+#endif 
         _bytes = sizeof(dtype);
         if (cpu_data != nullptr){
             _cpu_mem = std::make_shared<CpuMemory>(cpu_data, capacity);
@@ -199,7 +249,11 @@ public:
      */
     inline void re_alloc(std::vector<int> shape){
 
-        CHECK_GT(shape.size(), 0) << "error: input shape is empty!";
+#if defined _WIN32 || defined _WIN64
+		assert(shape.size() > 0);
+#else
+		CHECK_GT(shape.size(), 0) << "error: input shape is empty!";
+#endif 
         _shape = shape;
         int _size = 1;
         for (int i = 0; i < shape.size(); ++i) {
@@ -264,7 +318,11 @@ public:
      * \brief return shape of current tensor block
      */
     const inline std::vector<int> get_shape() {
-        CHECK_GT(_size, 0) << "input tensor is not initialized";
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
+		CHECK_GT(_size, 0) << "input tensor is not initialized";
+#endif 
         return _shape;
     }
 
@@ -272,7 +330,11 @@ public:
      * \brief get num for NCHW
      */
     inline int num(){
-        CHECK_GT(_size, 0) << "input tensor is not initialized";
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
+		CHECK_GT(_size, 0) << "input tensor is not initialized";
+#endif 
         if (_shape.size() == 4){
             return _shape[3];
         } else {
@@ -283,7 +345,11 @@ public:
      * \brief get channel for NCHW
      */
     inline int channel(){
-        CHECK_GT(_size, 0) << "input tensor is not initialized";
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
+		CHECK_GT(_size, 0) << "input tensor is not initialized";
+#endif 
         if (_shape.size() >= 3) {
             return _shape[2];
         } else{
@@ -295,7 +361,11 @@ public:
      * \brief get height for NCHW
      */
     inline int height(){
-        CHECK_GT(_size, 0) << "input tensor is not initialized";
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
+		CHECK_GT(_size, 0) << "input tensor is not initialized";
+#endif 
         if (_shape.size() >= 2){
             return _shape[1];
         } else{
@@ -307,7 +377,11 @@ public:
      * \brief get width for NCHW
      */
     inline int width(){
-        CHECK_GT(_size, 0) << "input tensor is not initialized";
+#if defined _WIN32 || defined _WIN64
+		assert(_size > 0);
+#else
+		CHECK_GT(_size, 0) << "input tensor is not initialized";
+#endif 
         return _shape[0];
     }
 
