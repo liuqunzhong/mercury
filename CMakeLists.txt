@@ -7,9 +7,9 @@ set(CMAKE_BUILD_TYPE release)
 
 set(CMAKE_CXX_STANDARD 11)
 
-option(USE_OPENMP "use openmp for muti-thread" ON)
-option(USE_X86 "build for x86 cpu" ON)
-option(USE_CUDA "build for nvidia gpu" ON)
+option(USE_OPENMP "use openmp for muti-thread" OFF)
+#option(USE_X86 "build for x86 cpu" ON)
+option(USE_CUDA "build for nvidia gpu" OFF)
 option(USE_ARM "build for arm devices" OFF)
 
 if(USE_OPENMP)
@@ -27,7 +27,7 @@ if(USE_CUDA)
     FIND_PACKAGE(CUDA REQUIRED)
 endif()
 
-SET( CMAKE_VERBOSE_MAKEFILE OFF)
+SET( CMAKE_VERBOSE_MAKEFILE ON)
 
 add_compile_options(-std=c++11)
 add_definitions(-fPIC)
@@ -55,7 +55,10 @@ add_subdirectory(base)
 
 #set(SOURCE_FILES main.cpp)
 
-#add_executable(${PROJECT_NAME} ${DIRSRCS})
-cuda_add_executable(${PROJECT_NAME} ${DIRSRCS})
-
-target_link_libraries(${PROJECT_NAME} base -lm -ldl -lcuda)
+if (USE_CUDA)
+    cuda_add_executable(${PROJECT_NAME} ${DIRSRCS})
+    target_link_libraries(${PROJECT_NAME} base -lm -ldl -lcuda)
+else()
+    add_executable(${PROJECT_NAME} ${DIRSRCS})
+    target_link_libraries(${PROJECT_NAME} base -lm -ldl)
+endif ()
