@@ -53,7 +53,7 @@ void Tensor<dtype>::to_gpu() {
 }
 
 template<typename dtype>
-const dtype* Tensor<dtype>::get_cpu_data(int index) {
+const dtype* Tensor<dtype>::get_cpu_data(int index) const{
     return (const dtype*)_cpu_mem->get_data() + index;
 }
 
@@ -64,7 +64,7 @@ dtype* Tensor<dtype>::get_cpu_data_mutable(int index) {
 }
 
 template<typename dtype>
-const dtype* Tensor<dtype>::get_gpu_data(int index) {
+const dtype* Tensor<dtype>::get_gpu_data(int index) const{
     return (const dtype*)_gpu_mem->get_data() + index;
 }
 
@@ -85,7 +85,7 @@ void Tensor<dtype>::to_gpu(){
 }
 
 template<typename dtype>
-const dtype* Tensor<dtype>::get_cpu_data(int index) {
+const dtype* Tensor<dtype>::get_cpu_data(int index) const {
     return (const dtype*)_cpu_mem->get_data() + index;
 }
 
@@ -95,7 +95,7 @@ dtype* Tensor<dtype>::get_cpu_data_mutable(int index) {
 }
 
 template<typename dtype>
-const dtype* Tensor<dtype>::get_gpu_data(int index) {
+const dtype* Tensor<dtype>::get_gpu_data(int index) const{
     return (const dtype*)_cpu_mem->get_data() + index;
 }
 
@@ -109,15 +109,15 @@ dtype* Tensor<dtype>::get_gpu_data_mutable(int index) {
 template void Tensor<float>::to_cpu();
 template void Tensor<float>::to_gpu();
 
-template int Tensor<float>::num();
-template int Tensor<float>::channel();
-template int Tensor<float>::height();
-template int Tensor<float>::width();
+template int Tensor<float>::num() const;
+template int Tensor<float>::channel() const;
+template int Tensor<float>::height() const;
+template int Tensor<float>::width() const;
 
 
-template const float* Tensor<float>::get_cpu_data(int index);
+template const float* Tensor<float>::get_cpu_data(int index) const;
 template float* Tensor<float>::get_cpu_data_mutable(int index);
-template const float* Tensor<float>::get_gpu_data(int index);
+template const float* Tensor<float>::get_gpu_data(int index) const;
 template float* Tensor<float>::get_gpu_data_mutable(int index);
 
 } //namespace mercury

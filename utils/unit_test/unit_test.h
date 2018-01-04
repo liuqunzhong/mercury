@@ -5,40 +5,24 @@
 #include "test_base.h"
 
 
-/**
- * \brief declare the Test Function
- */
-/*#define TEST(test_class, test_function)	\
-	class test_class##_##test_function:public test_class{\
-	public:\
-		friend class ::anakin::test::EnginResOp;\
-		void test_function();\
-	};\
-	const test_class##_##test_function _##test_class##_##test_function;\
-	{\
-		::anakin::test::EnginResOp::GetInstance(#test_class,#test_function)>>test_class::GetInstance()& \
-		std::bind(&test_class##_##test_function::test_function,&_test_class##_##test_function);\
-	} \
-	void test_class##_##test_function::test_function()
-*/
 #define TEST(test_class, test_function)	\
 	class test_class##_##test_function:public test_class{\
 	public:\
-		friend class ::anakin::test::EnginResOp;\
+		friend class ::mercury::test::EnginResOp;\
 		void test_function();\
 	};\
 	const test_class##_##test_function _##test_class##_##test_function;\
 	std::function<void(void)> func_##test_class##_##test_function =std::bind(&test_class##_##test_function::test_function,_##test_class##_##test_function); \
-	::anakin::test::EnginResOp op_test_class##_##test_function = (::anakin::test::EnginResOp(#test_class,#test_function)\
+	::mercury::test::EnginResOp op_test_class##_##test_function = (::mercury::test::EnginResOp(#test_class,#test_function)\
 	>>test_class::get_instance<test_class>() & func_##test_class##_##test_function);\
 	void test_class##_##test_function::test_function()
 
 
 #define InitTest()\
-	::anakin::test::config::initial()
+	::mercury::test::config::initial()
 
 #define RUN_ALL_TESTS(argv_0) \
-	::anakin::test::EngineTest::get_instance().run_all(argv_0)
+	::mercury::test::EngineTest::get_instance().run_all(argv_0)
 
 
 

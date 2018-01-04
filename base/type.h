@@ -5,6 +5,14 @@
 #ifndef MERCURY_BASE_TYPE_H
 #define MERCURY_BASE_TYPE_H
 
+enum MERC_STATUS
+{
+	MERC_ERR = -1,
+	MERC_OK = 0,
+	MERC_WARN = 1
+	
+};
+
 struct int4d {
     int left;
     int right;
@@ -18,14 +26,14 @@ struct int2d {
 };
 
 enum POOL_TYPE{
-    AK_POOL_MAX = 0,
-    AK_POOL_AVE,
-    AK_STOCHASTIC
+    POOL_MAX = 0,
+    POOL_AVE,
+    STOCHASTIC
 };
 
 enum BORDER_TYPE{
-    AK_BORDER_CONSTANT = 0,
-    AK_BORDER_REPLICATE
+    BORDER_CONSTANT = 0,
+    BORDER_REPLICATE
 };
 
 enum SyncHead{

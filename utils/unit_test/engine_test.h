@@ -7,7 +7,7 @@
 
 #include "test_base.h"
 
-namespace anakin {
+namespace mercury {
 
 namespace test {
 
@@ -158,7 +158,7 @@ public:
 } // namespace test
 
 
-} // namespace anakin
+} // namespace mercury
 
 
 #endif 

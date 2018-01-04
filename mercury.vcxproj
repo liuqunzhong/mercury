@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6FE3F8F8-09E7-47E0-BC12-84E3A9211173}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>./;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>base;utils;.\;framework;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="base\memory.cpp" />
+    <ClCompile Include="base\tensor.cpp" />
+    <ClCompile Include="framework\blob.cpp" />
+    <ClCompile Include="framework\layer.cpp" />
+    <ClCompile Include="framework\modelbin.cpp" />
+    <ClCompile Include="framework\net.cpp" />
+    <ClCompile Include="framework\paramdict.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="operator\absval.cpp" />
+    <ClCompile Include="operator\argmax.cpp" />
+    <ClCompile Include="operator\batchnorm.cpp" />
+    <ClCompile Include="operator\bias.cpp" />
+    <ClCompile Include="operator\binaryop.cpp" />
+    <ClCompile Include="operator\bnll.cpp" />
+    <ClCompile Include="operator\concat.cpp" />
+    <ClCompile Include="operator\convolution.cpp" />
+    <ClCompile Include="operator\convolutiondepthwise.cpp" />
+    <ClCompile Include="operator\crop.cpp" />
+    <ClCompile Include="operator\deconvolution.cpp" />
+    <ClCompile Include="operator\deconvolutiondepthwise.cpp" />
+    <ClCompile Include="operator\detectionoutput.cpp" />
+    <ClCompile Include="operator\dropout.cpp" />
+    <ClCompile Include="operator\eltwise.cpp" />
+    <ClCompile Include="operator\elu.cpp" />
+    <ClCompile Include="operator\embed.cpp" />
+    <ClCompile Include="operator\exp.cpp" />
+    <ClCompile Include="operator\expanddims.cpp" />
+    <ClCompile Include="operator\flatten.cpp" />
+    <ClCompile Include="operator\innerproduct.cpp" />
+    <ClCompile Include="operator\input.cpp" />
+    <ClCompile Include="operator\interp.cpp" />
+    <ClCompile Include="operator\log.cpp" />
+    <ClCompile Include="operator\lrn.cpp" />
+    <ClCompile Include="operator\memorydata.cpp" />
+    <ClCompile Include="operator\mvn.cpp" />
+    <ClCompile Include="operator\normalize.cpp" />
+    <ClCompile Include="operator\padding.cpp" />
+    <ClCompile Include="operator\permute.cpp" />
+    <ClCompile Include="operator\pooling.cpp" />
+    <ClCompile Include="operator\power.cpp" />
+    <ClCompile Include="operator\prelu.cpp" />
+    <ClCompile Include="operator\priorbox.cpp" />
+    <ClCompile Include="operator\proposal.cpp" />
+    <ClCompile Include="operator\reduction.cpp" />
+    <ClCompile Include="operator\relu.cpp" />
+    <ClCompile Include="operator\reshape.cpp" />
+    <ClCompile Include="operator\roipooling.cpp" />
+    <ClCompile Include="operator\scale.cpp" />
+    <ClCompile Include="operator\shufflechannel.cpp" />
+    <ClCompile Include="operator\sigmoid.cpp" />
+    <ClCompile Include="operator\slice.cpp" />
+    <ClCompile Include="operator\softmax.cpp" />
+    <ClCompile Include="operator\split.cpp" />
+    <ClCompile Include="operator\spp.cpp" />
+    <ClCompile Include="operator\squeeze.cpp" />
+    <ClCompile Include="operator\tanh.cpp" />
+    <ClCompile Include="operator\threshold.cpp" />
+    <ClCompile Include="operator\tile.cpp" />
+    <ClCompile Include="operator\unaryop.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base\memory.h" />
+    <ClInclude Include="base\tensor.h" />
+    <ClInclude Include="base\type.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="framework\blob.h" />
+    <ClInclude Include="framework\layer.h" />
+    <ClInclude Include="framework\layer_type.h" />
+    <ClInclude Include="framework\modelbin.h" />
+    <ClInclude Include="framework\net.h" />
+    <ClInclude Include="framework\paramdict.h" />
+    <ClInclude Include="layer_declaration.h" />
+    <ClInclude Include="layer_registry.h" />
+    <ClInclude Include="layer_type_enum.h" />
+    <ClInclude Include="operator\absval.h" />
+    <ClInclude Include="operator\argmax.h" />
+    <ClInclude Include="operator\batchnorm.h" />
+    <ClInclude Include="operator\bias.h" />
+    <ClInclude Include="operator\binaryop.h" />
+    <ClInclude Include="operator\bnll.h" />
+    <ClInclude Include="operator\concat.h" />
+    <ClInclude Include="operator\convolution.h" />
+    <ClInclude Include="operator\convolutiondepthwise.h" />
+    <ClInclude Include="operator\crop.h" />
+    <ClInclude Include="operator\deconvolution.h" />
+    <ClInclude Include="operator\deconvolutiondepthwise.h" />
+    <ClInclude Include="operator\detectionoutput.h" />
+    <ClInclude Include="operator\dropout.h" />
+    <ClInclude Include="operator\eltwise.h" />
+    <ClInclude Include="operator\elu.h" />
+    <ClInclude Include="operator\embed.h" />
+    <ClInclude Include="operator\exp.h" />
+    <ClInclude Include="operator\expanddims.h" />
+    <ClInclude Include="operator\flatten.h" />
+    <ClInclude Include="operator\innerproduct.h" />
+    <ClInclude Include="operator\input.h" />
+    <ClInclude Include="operator\interp.h" />
+    <ClInclude Include="operator\log.h" />
+    <ClInclude Include="operator\lrn.h" />
+    <ClInclude Include="operator\memorydata.h" />
+    <ClInclude Include="operator\mvn.h" />
+    <ClInclude Include="operator\normalize.h" />
+    <ClInclude Include="operator\padding.h" />
+    <ClInclude Include="operator\permute.h" />
+    <ClInclude Include="operator\pooling.h" />
+    <ClInclude Include="operator\power.h" />
+    <ClInclude Include="operator\prelu.h" />
+    <ClInclude Include="operator\priorbox.h" />
+    <ClInclude Include="operator\proposal.h" />
+    <ClInclude Include="operator\reduction.h" />
+    <ClInclude Include="operator\relu.h" />
+    <ClInclude Include="operator\reshape.h" />
+    <ClInclude Include="operator\roipooling.h" />
+    <ClInclude Include="operator\scale.h" />
+    <ClInclude Include="operator\shufflechannel.h" />
+    <ClInclude Include="operator\sigmoid.h" />
+    <ClInclude Include="operator\slice.h" />
+    <ClInclude Include="operator\softmax.h" />
+    <ClInclude Include="operator\split.h" />
+    <ClInclude Include="operator\spp.h" />
+    <ClInclude Include="operator\squeeze.h" />
+    <ClInclude Include="operator\tanh.h" />
+    <ClInclude Include="operator\threshold.h" />
+    <ClInclude Include="operator\tile.h" />
+    <ClInclude Include="operator\unaryop.h" />
+    <ClInclude Include="utils\logger\logger.h" />
+    <ClInclude Include="utils\logger\logger_core.h" />
+    <ClInclude Include="utils\logger\log_utils.h" />
+    <ClInclude Include="utils\tensor_ops.h" />
+    <ClInclude Include="utils\unit_test\engine_test.h" />
+    <ClInclude Include="utils\unit_test\test_base.h" />
+    <ClInclude Include="utils\unit_test\unit_test.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.h.in" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

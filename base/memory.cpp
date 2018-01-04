@@ -40,7 +40,7 @@ CpuMemory::CpuMemory(void *data, size_t size) : Memory(size) {
     _own_data = false;
     _data = data;
 }
-inline void CpuMemory::re_alloc(size_t size) {
+void CpuMemory::re_alloc(size_t size) {
     if(_own_data && size < _capacity) {
         return;
     } else {
@@ -54,6 +54,11 @@ inline void CpuMemory::re_alloc(size_t size) {
 #endif
     }
 }
+
+void CpuMemory::copyto(Memory& buf) {
+	memcpy(buf.get_data_mutable(), _data, _capacity);
+}
+
 const void* CpuMemory::get_data() {
     return _data;
 }
@@ -116,6 +121,12 @@ void GpuMemory::re_alloc(size_t size) {
         cudaMalloc(&_data, _capacity);
 #endif
     }
+}
+
+void GpuMemory::copyto(Memory& buf) {
+#ifdef USE_CUDA
+	cudaMemcpy(buf.get_data_mutable(), _data, _capacity, cudaMemcpyDeviceToDevice);
+#endif
 }
 
 void GpuMemory::mem_set(int c, size_t size) {

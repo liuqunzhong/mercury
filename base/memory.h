@@ -38,10 +38,16 @@ public:
         this->_data = buf._data;
         return *this;
     }
+	
     /*
      * \brief destructor
      */
     ~Memory(){}
+
+	/*
+	* \brief deep copy function
+	*/
+	virtual void copyto(Memory& buf) = 0;
 
     /*
      * \brief set _data to (c) with length of (size)
@@ -98,6 +104,7 @@ public:
     virtual void mem_set(int c, size_t size);
     virtual const void* get_data();
     virtual void* get_data_mutable();
+	virtual void copyto(Memory& buf);
 
 };
 
@@ -118,6 +125,7 @@ public:
     virtual void mem_set(int c, size_t size);
     virtual const void* get_data();
     virtual void* get_data_mutable();
+	virtual void copyto(Memory& buf);
 
     // register pinned memory.
     inline void reg_page_lock(size_t size);

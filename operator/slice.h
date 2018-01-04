@@ -1,0 +1,23 @@
+#ifndef MERCURY_OPERATOR_SLICE_H
+#define MERCURY_OPERATOR_SLICE_H
+
+#include "layer.h"
+
+namespace mercury {
+
+class Slice : public Layer
+{
+public:
+    Slice();
+
+    virtual int load_param(const ParamDict& pd);
+
+    virtual int forward(const std::vector<Tensor<float>>& bottom_blobs, std::vector<Tensor<float>>& top_blobs) const;
+
+public:
+	Tensor<float> slices;
+};
+
+} // namespace mercury
+
+#endif // MERCURY_OPERATOR_SLICE_H
