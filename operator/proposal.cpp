@@ -96,8 +96,8 @@ static inline float intersection_area(const Rect& a, const Rect& b)
         return 0.f;
     }
 
-    float inter_width = min(a.x2, b.x2) - max(a.x1, b.x1);
-    float inter_height = min(a.y2, b.y2) - max(a.y1, b.y1);
+    float inter_width = std::min(a.x2, b.x2) - std::max(a.x1, b.x1);
+    float inter_height = std::min(a.y2, b.y2) - std::max(a.y1, b.y1);
 
     return inter_width * inter_height;
 }

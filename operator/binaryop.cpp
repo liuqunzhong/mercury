@@ -24,7 +24,7 @@ template<typename Op>
 static int binary_op(const Tensor<float>& a, const Tensor<float>& b, Tensor<float>& c)
 {
     Op op;
-
+/*
     int w = a.w;
     int h = a.h;
     int channels = a.c;
@@ -360,7 +360,7 @@ static int binary_op(const Tensor<float>& a, const Tensor<float>& b, Tensor<floa
             }
         }
     }
-
+*/
     return 0;
 }
 

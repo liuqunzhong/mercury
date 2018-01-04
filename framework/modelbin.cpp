@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <vector>
-#include "platform.h"
+#include "config.h"
 
 namespace mercury {
 

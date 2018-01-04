@@ -5,5 +5,6 @@
 #cmakedefine USE_X86
 #cmakedefine USE_CUDA
 #cmakedefine USE_ARM
-
+#cmakedefine01 USE_STRING
+#cmakedefine01 USE_STDIO
 #endif // MERCURY_CONFIG_H
