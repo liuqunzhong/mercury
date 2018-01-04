@@ -39,7 +39,8 @@ add_definitions(-Wall)# -Wextra  -Wno-unused-function
 
 message(STATUS "CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
 
-configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+#CMAKE_CURRENT_BINARY_DIR
+configure_file(config.h.in ${CMAKE_SOURCE_DIR}/config.h)
 
 include_directories(base)
 include_directories(framework)

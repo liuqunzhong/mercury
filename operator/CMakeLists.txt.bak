@@ -46,32 +46,32 @@ macro(mercury_add_layer class)
     #CMAKE_CURRENT_BINARY_DIR
     if(WITH_LAYER_${name})
         if(WITH_LAYER_${name}_arm)
-            file(APPEND ${PROJECT_SOURCE_DIR}/layer_declaration.h
+            file(APPEND ${PROJECT_SOURCE_DIR }/layer_declaration.h
                 "extern Layer* ${class}_arm_layer_creator();\n")
-            file(APPEND ${PROJECT_SOURCE_DIR}/layer_registry.h
+            file(APPEND ${PROJECT_SOURCE_DIR }/layer_registry.h
                 "#if USE_STRING\n{\"${class}\",${class}_arm_layer_creator},\n#else\n{${class}_arm_layer_creator},\n#endif\n")
         elseif(WITH_LAYER_${name}_cuda)
-            file(APPEND ${PROJECT_SOURCE_DIR}/layer_declaration.h
+            file(APPEND ${PROJECT_SOURCE_DIR }/layer_declaration.h
                 "extern Layer* ${class}_cuda_layer_creator();\n")
-            file(APPEND ${PROJECT_SOURCE_DIR}/layer_registry.h
+            file(APPEND ${PROJECT_SOURCE_DIR }/layer_registry.h
                 "#if USE_STRING\n{\"${class}\",${class}_cuda_layer_creator},\n#else\n{${class}_cuda_layer_creator},\n#endif\n")
         elseif(WITH_LAYER_${name}_x86)
-            file(APPEND ${PROJECT_SOURCE_DIR}/layer_declaration.h
+            file(APPEND ${PROJECT_SOURCE_DIR }/layer_declaration.h
                 "extern Layer* ${class}_x86_layer_creator();\n")
-            file(APPEND ${PROJECT_SOURCE_DIR}/layer_registry.h
+            file(APPEND ${PROJECT_SOURCE_DIR }/layer_registry.h
                 "#if USE_STRING\n{\"${class}\",${class}_x86_layer_creator},\n#else\n{${class}_x86_layer_creator},\n#endif\n")
         else()
-            file(APPEND ${PROJECT_SOURCE_DIR}/layer_declaration.h
+            file(APPEND ${PROJECT_SOURCE_DIR }/layer_declaration.h
                 "extern Layer* ${class}_layer_creator();\n")
-            file(APPEND ${PROJECT_SOURCE_DIR}/layer_registry.h
+            file(APPEND ${PROJECT_SOURCE_DIR }/layer_registry.h
                 "#if USE_STRING\n{\"${class}\",${class}_layer_creator},\n#else\n{${class}_layer_creator},\n#endif\n")
         endif()
     else()
-        file(APPEND ${PROJECT_SOURCE_DIR}/layer_registry.h "#if USE_STRING\n{\"${class}\",0},\n#else\n{0},\n#endif\n")
+        file(APPEND ${PROJECT_SOURCE_DIR }/layer_registry.h "#if USE_STRING\n{\"${class}\",0},\n#else\n{0},\n#endif\n")
     endif()
 
     # generate layer_type_enum file
-    file(APPEND ${PROJECT_SOURCE_DIR}/layer_type_enum.h "${class} = ${__LAYER_TYPE_ENUM_INDEX},\n")
+    file(APPEND ${PROJECT_SOURCE_DIR }/layer_type_enum.h "${class} = ${__LAYER_TYPE_ENUM_INDEX},\n")
     math(EXPR __LAYER_TYPE_ENUM_INDEX "${__LAYER_TYPE_ENUM_INDEX}+1")
 endmacro()
 

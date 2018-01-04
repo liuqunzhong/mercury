@@ -31,7 +31,7 @@
 #if USE_STRING
 {"Convolution",Convolution_layer_creator},
 #else
-{Convolution_x86_layer_creator},
+{Convolution_layer_creator},
 #endif
 #if USE_STRING
 {"Crop",Crop_layer_creator},
